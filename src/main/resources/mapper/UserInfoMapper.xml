@@ -21,6 +21,7 @@
         user_id, user_name, user_pwd, sex, user_email, user_phone, user_birthday, regist_time, role_id, deleted
     </sql>
 
+    <!-- id必须和mapper中的方法名一致，并且是唯一的：resultType表示查询结果对应的java对象，该对象要使用全路径表示 -->
     <select id="selectUserByLogin" resultType="com.springboot.shopmgr.userinfo.dto.LoginUserResponse">
         SELECT
             u.user_id,
@@ -31,10 +32,10 @@
                 INNER JOIN role_info r ON u.role_id = r.role_id
         WHERE
             1 = 1
-          <if test="userName != NULL and userName != ''">
+          <if test="userName != null and userName != ''">
               AND u.user_name = #{userName}
           </if>
-          <if test="userPwd != NULL and userPwd != ''">
+          <if test="userPwd != null and userPwd != ''">
               AND u.user_pwd = #{userPwd}
           </if>
     </select>

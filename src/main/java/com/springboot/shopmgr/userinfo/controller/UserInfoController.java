@@ -7,11 +7,7 @@ import com.springboot.shopmgr.userinfo.dto.LoginUserResponse;
 import com.springboot.shopmgr.userinfo.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -29,7 +25,7 @@ import javax.annotation.Resource;
  * @since 2024-06-24
  */
 @RestController
-@RequestMapping("/userinfo/userInfo")
+@RequestMapping("/user")
 public class UserInfoController {
 
 //    @Autowired
@@ -42,7 +38,7 @@ public class UserInfoController {
      */
 //    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @PostMapping("/login")
-    public JSONObject login(LoginUser loginUser){
+    public JSONObject login(@RequestBody LoginUser loginUser){
         //将loginUser转发给service处理
         LoginUserResponse res = userInfoService.login(loginUser);
         //将处理结果返回给前端页面

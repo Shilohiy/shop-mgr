@@ -30,9 +30,15 @@ spring:
 # mybatis-plus配置
 mybatis-plus:
   # 指定xml文件路径
-  mapper-locations: classpath:/*.xml
+  mapper-locations: classpath:/mapper/*.xml
   configuration:
     # 关闭缓存
     cache-enabled: false
     # 数据表中的字段如果有下划线，则自动转换为驼峰格式
     map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      springboot:
+        shopmgr: debug
