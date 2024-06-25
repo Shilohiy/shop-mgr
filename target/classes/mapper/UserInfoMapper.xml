@@ -21,4 +21,22 @@
         user_id, user_name, user_pwd, sex, user_email, user_phone, user_birthday, regist_time, role_id, deleted
     </sql>
 
+    <select id="selectUserByLogin" resultType="com.springboot.shopmgr.userinfo.dto.LoginUserResponse">
+        SELECT
+            u.user_id,
+            u.user_name,
+            r.role_id
+        FROM
+            user_info u
+                INNER JOIN role_info r ON u.role_id = r.role_id
+        WHERE
+            1 = 1
+          <if test="userName != NULL and userName != ''">
+              AND u.user_name = #{userName}
+          </if>
+          <if test="userPwd != NULL and userPwd != ''">
+              AND u.user_pwd = #{userPwd}
+          </if>
+    </select>
+
 </mapper>

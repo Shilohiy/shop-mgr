@@ -1,7 +1,10 @@
 package com.springboot.shopmgr.userinfo.mapper;
 
+import com.springboot.shopmgr.userinfo.dto.LoginUserResponse;
 import com.springboot.shopmgr.userinfo.entity.UserInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -12,5 +15,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2024-06-24
  */
 public interface UserInfoMapper extends BaseMapper<UserInfo> {
+
+    LoginUserResponse selectUserByLogin(Map<String,Object> params);
 
 }

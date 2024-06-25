@@ -1,9 +1,19 @@
 package com.springboot.shopmgr.userinfo.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.springboot.shopmgr.userinfo.dto.LoginUser;
+import com.springboot.shopmgr.userinfo.dto.LoginUserResponse;
+import com.springboot.shopmgr.userinfo.service.UserInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -22,7 +32,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/userinfo/userInfo")
 public class UserInfoController {
 
-//    @RequestMapping("/login")
+//    @Autowired
+    @Resource
+    private UserInfoService userInfoService;
+    /**
+     * RequestBody注释：将前端传递的参数解析成json或者xml格式，要求前端传递的参数是json或者xml格式
+     * @param loginUser
+     * @return
+     */
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @PostMapping("/login")
+    public JSONObject login(LoginUser loginUser){
+        //将loginUser转发给service处理
+        LoginUserResponse res = userInfoService.login(loginUser);
+        //将处理结果返回给前端页面
+        JSONObject obj =new JSONObject();
 
+        if(!ObjectUtils.isEmpty(res)){
+            obj.put("code",200);
+            obj.put("msg"," 登陆成功");
+            obj.put("data",res);
+        }else{
+            obj.put("code",500);
+            obj.put("msg","登陆失败");
+        }
+
+        return obj;
+    }
 
 }
