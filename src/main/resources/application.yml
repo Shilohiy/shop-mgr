@@ -1,0 +1,38 @@
+# 端口号设置
+# yaml文件以冒号链接
+#子元素换行，以两个空格进行缩进
+# 最后叶子节点需要赋值，赋值时键值和value之间以冒号分割并且冒号后要有一个空格
+server:
+  port: 8088
+  tomcat:
+    uri-encoding: UTF-8
+
+# 数据库设置
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shop_db?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: H2002L1003Y
+
+    # druid连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 连接池初始化链接的个数
+      initial-size: 3
+      # 连接池初始化链接数
+      max-active: 20
+      # 最大等待时间，单位ms
+      max-wait: 60000
+      # 最小空闲数
+      min-idle: 3
+
+# mybatis-plus配置
+mybatis-plus:
+  # 指定xml文件路径
+  mapper-locations: classpath:/*.xml
+  configuration:
+    # 关闭缓存
+    cache-enabled: false
+    # 数据表中的字段如果有下划线，则自动转换为驼峰格式
+    map-underscore-to-camel-case: true
